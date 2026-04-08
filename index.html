@@ -223,7 +223,7 @@
     /* ── QUICK ACCESS ── */
     .quick-access {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 16px;
       margin-bottom: 36px;
     }
@@ -247,7 +247,7 @@
     .quick-btn:hover { background: #005299; transform: translateY(-2px); }
     .quick-btn .qb-icon { font-size: 2rem; }
     .quick-btn .qb-sub { font-size: 0.78rem; font-weight: 400; opacity: .8; margin-top: 2px; }
-    @media (max-width: 500px) {
+    @media (max-width: 650px) {
       .quick-access { grid-template-columns: 1fr; }
       .quick-btn { padding: 18px; font-size: 1rem; }
     }
@@ -326,7 +326,6 @@
 <nav class="nav">
   <a href="#willkommen">Willkommen</a>
   <a href="#verlaufsplan">Studienverlaufsplan</a>
-  <a href="#studientechnik">Studientechnik</a>
   <a href="#stipendien">Stipendien</a>
   <a href="#ausland">Ausland</a>
   <a href="#bafoeg">BAföG</a>
@@ -356,6 +355,11 @@
       <span class="qb-icon">🎓</span>
       HISinOne
       <span class="qb-sub">Campus-Management-Portal</span>
+    </a>
+    <a href="https://campus.uni-due.de/lsf" target="_blank" class="quick-btn">
+      <span class="qb-icon">📅</span>
+      LSF
+      <span class="qb-sub">Stundenplan &amp; Vorlesungsverzeichnis</span>
     </a>
   </div>
 
@@ -495,28 +499,6 @@
     ** Zulassungsvoraussetzungen: „Einführung in die Programmierung" sowie „Datenstrukturen und Algorithmen" bestanden.
   </p>
 
-  <!-- STUDIENTECHNIK -->
-  <h2 class="section-title" id="studientechnik">
-    <span class="icon">🧠</span> Studientechnik &amp; Lernstrategie
-  </h2>
-  <div class="tip-list">
-    <ul>
-      <li>Kleine Lern- oder Arbeitsgruppen bilden</li>
-      <li>Das Semester realistisch planen – Vorkenntnisse und Arbeitsaufwand berücksichtigen</li>
-      <li>Zeitpuffer für schwierigere Themen einplanen</li>
-      <li>In Übungen und Tutorien aktiv mitarbeiten, nicht nur zuhören</li>
-      <li>Sprechstunden nutzen, um Fragen zu klären</li>
-      <li>Literatur gezielt (nicht wahllos) auswählen</li>
-      <li>Regelmäßig prüfen, ob man den Stoff wirklich verstanden hat</li>
-      <li>Pausen und Ausgleich fest einplanen</li>
-      <li>Selbstdisziplin entwickeln – an der Uni gibt es deutlich weniger äußere Kontrolle</li>
-    </ul>
-    <div class="hint" style="margin-top:14px;">
-      ⏱ Als grober Richtwert: ca. <strong>40 Stunden pro Woche</strong> für Lehrveranstaltungen und
-      Vor-/Nachbereitung – natürlich mit Pausen und in einem gesunden Rahmen.
-    </div>
-  </div>
-
   <!-- STIPENDIEN -->
   <h2 class="section-title" id="stipendien">
     <span class="icon">🏅</span> Stipendien
@@ -538,6 +520,15 @@
       <h3>Frühzeitig bewerben</h3>
       <p>Manche Programme setzen gute Leistungen oder Engagement voraus. Rechtzeitig informieren und bewerben!</p>
     </div>
+  </div>
+  <div class="link-group" style="margin-top:16px;">
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/de/studium/foerderung.php" target="_blank">Stipendien &amp; Förderung – Offizielle UDE-Seite</a></li>
+      <li><a href="https://www.stipendienlotse.de/datenbank.php?DS=1255" target="_blank">Deutschlandstipendium (UDE) – 300 € / Monat</a></li>
+      <li><a href="https://www2.daad.de/deutschland/stipendium/datenbank/de/21148-stipendiendatenbank/" target="_blank">DAAD Stipendiendatenbank – Alle Förderangebote</a></li>
+      <li><a href="https://www.e-fellows.net/stipendien-datenbank/universitaet-duisburg-essen-deutschlandstipendium" target="_blank">e-fellows.net – UDE Stipendien</a></li>
+      <li><a href="https://www.mystipendium.de/studium/angewandte-informatik" target="_blank">myStipendium – Stipendien für Informatik</a></li>
+    </ul>
   </div>
 
   <!-- AUSLAND -->
