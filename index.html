@@ -220,6 +220,38 @@
     }
     .nav a:hover { color: #fff; }
 
+    /* ── QUICK ACCESS ── */
+    .quick-access {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .quick-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 18px rgba(0,56,112,.18);
+      transition: background .2s, transform .15s;
+      text-align: center;
+    }
+    .quick-btn:hover { background: #005299; transform: translateY(-2px); }
+    .quick-btn .qb-icon { font-size: 2rem; }
+    .quick-btn .qb-sub { font-size: 0.78rem; font-weight: 400; opacity: .8; margin-top: 2px; }
+    @media (max-width: 500px) {
+      .quick-access { grid-template-columns: 1fr; }
+      .quick-btn { padding: 18px; font-size: 1rem; }
+    }
+
     /* ── STUDIENVERLAUFSPLAN TABLE ── */
     .svp-wrapper {
       overflow-x: auto;
@@ -313,6 +345,20 @@
 
 <div class="container">
 
+  <!-- QUICK ACCESS -->
+  <div class="quick-access">
+    <a href="https://lehre.moodle.uni-due.de/login/index.php" target="_blank" class="quick-btn">
+      <span class="qb-icon">📚</span>
+      Moodle
+      <span class="qb-sub">Lernplattform der UDE</span>
+    </a>
+    <a href="https://campus.uni-due.de/cm/" target="_blank" class="quick-btn">
+      <span class="qb-icon">🎓</span>
+      HISinOne
+      <span class="qb-sub">Campus-Management-Portal</span>
+    </a>
+  </div>
+
   <!-- WELCOME -->
   <section id="willkommen">
     <div class="welcome-card">
@@ -331,7 +377,7 @@
 
       <div class="hint" style="margin-top:16px;">
         📋 <strong>Erster Schritt:</strong> Meldet euch bei Moodle an:<br/>
-        <a href="https://lehre.moodle.uni-due.de/course/view.php?id=4995" target="_blank" style="color:#0077cc;">
+        <a href="https://lehre.moodle.uni-due.de/login/index.php" target="_blank" style="color:#0077cc;">
           lehre.moodle.uni-due.de → SE-Gruppenliste → Kurs beitreten
         </a><br/>
         So werdet ihr zur Gruppenliste hinzugefügt und erhaltet euren Mentoring-Punkt.
@@ -512,8 +558,14 @@
       <p>Erasmus+, PROMOS, DUE-Mobil und Auslands-BAföG. Anträge möglichst früh stellen!</p>
     </div>
   </div>
-  <div class="hint">
-    🌍 Mehr Infos: <a href="https://www.uni-due.de/international/auslandslotsen" target="_blank" style="color:#5a4500;">Auslandslotsen der UDE</a>
+  <div class="link-group" style="margin-top:14px;">
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/international/outgoings_erasmus_studienaufenthalte.php" target="_blank">Erasmus – Studium in Europa</a></li>
+      <li><a href="https://www.uni-due.de/international/outgoings_erasmus_praktika.php" target="_blank">Erasmus+ – Praktika im europäischen Ausland</a></li>
+      <li><a href="https://www.uni-due.de/international/outgoings_promos_duemobil.php" target="_blank">PROMOS &amp; DUE-Mobil – Finanzierung weltweit</a></li>
+      <li><a href="https://www.uni-due.de/de/studium/auslandsstudium.php" target="_blank">Auslandsstudium – Überblick UDE</a></li>
+      <li><a href="https://www.uni-due.de/international/auslandslotsen" target="_blank">Auslandslotsen der UDE</a></li>
+    </ul>
   </div>
 
   <!-- BAFOEG -->
@@ -613,7 +665,7 @@
   <div class="link-group">
     <h3>Moodle &amp; Lernplattform</h3>
     <ul class="link-list">
-      <li><a href="https://lehre.moodle.uni-due.de/course/view.php?id=4995" target="_blank">Moodle – SE-Gruppenliste (Eintragen!)</a></li>
+      <li><a href="https://lehre.moodle.uni-due.de/login/index.php" target="_blank">Moodle – SE-Gruppenliste (Eintragen!)</a></li>
     </ul>
   </div>
 
@@ -623,7 +675,7 @@
       <li><a href="https://www.uni-due.de/informatik/mentoring/" target="_blank">Mentoring-Programm der Fakultät Informatik</a></li>
       <li><a href="https://www.uni-due.de/informatik" target="_blank">Hauptseite Fakultät Informatik</a></li>
       <li><a href="https://fie-due.de/" target="_blank">Fachschaft Informatik Essen (FIE)</a></li>
-      <li><a href="https://www.instagram.com/fie_due/" target="_blank" class="insta">Instagram der Fachschaft Informatik (@fie_due)</a></li>
+      <li><a href="https://www.instagram.com/fachschaft_informatik_essen/" target="_blank" class="insta">Instagram der Fachschaft Informatik (@fie_due)</a></li>
     </ul>
   </div>
 
