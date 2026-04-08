@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O-Woche Info – B.Sc. Software Engineering | UDE</title>
+  <style>
+    :root {
+      --primary: #003870;
+      --accent: #0077cc;
+      --light-bg: #f4f7fb;
+      --card-bg: #ffffff;
+      --text: #1a1a2e;
+      --muted: #5a6a7e;
+      --border: #dce6f0;
+      --green: #1a7a4a;
+      --radius: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #005fa3 100%);
+      color: #fff;
+      padding: 64px 24px 48px;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 99px;
+      padding: 4px 16px;
+      font-size: 0.82rem;
+      letter-spacing: .06em;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 700; margin-bottom: 12px; }
+    .hero p  { font-size: 1.05rem; opacity: .85; max-width: 600px; margin: 0 auto 28px; }
+    .hero .meta { font-size: 0.88rem; opacity: .7; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    /* ── WELCOME CARD ── */
+    .welcome-card {
+      background: var(--card-bg);
+      border-left: 5px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 12px rgba(0,56,112,.07);
+    }
+    .welcome-card h2 { color: var(--primary); font-size: 1.15rem; margin-bottom: 10px; }
+    .welcome-card p  { color: #333; font-size: 0.97rem; }
+    .welcome-card .sig { margin-top: 14px; font-weight: 600; color: var(--primary); }
+
+    /* ── SECTION HEADERS ── */
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 48px 0 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title .icon {
+      width: 34px; height: 34px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: 0 2px 10px rgba(0,56,112,.06);
+      border: 1px solid var(--border);
+      transition: box-shadow .2s;
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,56,112,.12); }
+    .card h3   { font-size: 1rem; color: var(--primary); margin-bottom: 8px; font-weight: 600; }
+    .card p    { font-size: 0.9rem; color: #444; }
+
+    /* ── TIP LIST ── */
+    .tip-list {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      box-shadow: 0 2px 10px rgba(0,56,112,.06);
+      border: 1px solid var(--border);
+    }
+    .tip-list ul { list-style: none; padding: 0; }
+    .tip-list li {
+      padding: 6px 0 6px 24px;
+      position: relative;
+      font-size: 0.93rem;
+      color: #333;
+      border-bottom: 1px dashed var(--border);
+    }
+    .tip-list li:last-child { border-bottom: none; }
+    .tip-list li::before {
+      content: "✓";
+      position: absolute; left: 0;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* ── INFO BLOCKS ── */
+    .info-block {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 22px 26px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0,56,112,.05);
+      border: 1px solid var(--border);
+    }
+    .info-block h3 { font-size: 1rem; color: var(--primary); margin-bottom: 6px; font-weight: 600; }
+    .info-block p  { font-size: 0.9rem; color: #444; }
+
+    /* ── LINKS GRID ── */
+    .link-group { margin-bottom: 28px; }
+    .link-group h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 10px;
+    }
+    .link-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .link-list li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background .15s, border-color .15s;
+    }
+    .link-list li a:hover { background: #e8f3ff; border-color: var(--accent); }
+    .link-list li a::before {
+      content: "↗";
+      font-size: 0.85rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .link-list li a.wa { color: #1a7a4a; border-color: #c3e6cd; background: #f0faf4; }
+    .link-list li a.wa::before { content: "💬"; }
+    .link-list li a.wa:hover { background: #d8f3e3; border-color: #1a7a4a; }
+    .link-list li a.insta { color: #c13584; border-color: #f0c0dd; background: #fff0f8; }
+    .link-list li a.insta::before { content: "📸"; }
+    .link-list li a.insta:hover { background: #fde0f0; border-color: #c13584; }
+
+    /* ── HINT BOX ── */
+    .hint {
+      background: #fff8e1;
+      border: 1px solid #f0c040;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-size: 0.9rem;
+      color: #5a4500;
+      margin-top: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── NAV ── */
+    .nav {
+      background: var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .nav a {
+      color: rgba(255,255,255,.75);
+      text-decoration: none;
+      font-size: 0.82rem;
+      padding: 12px 14px;
+      white-space: nowrap;
+      transition: color .15s;
+    }
+    .nav a:hover { color: #fff; }
+
+    /* ── STUDIENVERLAUFSPLAN TABLE ── */
+    .svp-wrapper {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 12px rgba(0,56,112,.08);
+      margin-bottom: 16px;
+    }
+    .svp {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 700px;
+      font-size: 0.82rem;
+      background: #fff;
+    }
+    .svp th, .svp td {
+      border: 1px solid #c8d8e8;
+      padding: 7px 8px;
+      vertical-align: middle;
+      text-align: center;
+    }
+    .svp thead tr {
+      background: #003870;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    .svp .fs-label {
+      background: #e8f0f8;
+      font-weight: 700;
+      color: #003870;
+      white-space: nowrap;
+    }
+    .svp .cp-label {
+      background: #d0e4f5;
+      font-size: 0.78rem;
+      color: #003870;
+      font-weight: 600;
+    }
+    /* Pflichtbereich-Farben */
+    .se   { background: #9dc3e6; color: #1a1a1a; } /* Software Engineering */
+    .ti   { background: #a9d18e; color: #1a1a1a; } /* Theoretische Informatik */
+    .ma   { background: #d9d9d9; color: #1a1a1a; } /* Mathematik */
+    .pe   { background: #ffd966; color: #1a1a1a; } /* Programmierung & Entwicklung */
+    .tg   { background: #c55a11; color: #fff; }    /* Technologische Grundlagen */
+    .ba   { background: #595959; color: #fff; font-weight: 700; } /* Bachelorarbeit etc. */
+    .svp-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .svp-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+    }
+    .svp-legend-dot {
+      width: 16px; height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .cards { grid-template-columns: 1fr; }
+      .welcome-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#willkommen">Willkommen</a>
+  <a href="#verlaufsplan">Studienverlaufsplan</a>
+  <a href="#studientechnik">Studientechnik</a>
+  <a href="#stipendien">Stipendien</a>
+  <a href="#ausland">Ausland</a>
+  <a href="#bafoeg">BAföG</a>
+  <a href="#wohnen">Wohnen</a>
+  <a href="#sport">Hochschulsport</a>
+  <a href="#links">Wichtige Links</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">Universität Duisburg-Essen · B.Sc. Software Engineering</div>
+  <h1>Dein Start ins Studium 🎓</h1>
+  <p>Alle wichtigen Infos der O-Woche – kompakt zusammengefasst von deinem Tutor.</p>
+  <div class="meta">Orientierungswoche · Fakultät Informatik</div>
+</div>
+
+<div class="container">
+
+  <!-- WELCOME -->
+  <section id="willkommen">
+    <div class="welcome-card">
+      <h2>Hallo und herzlich willkommen!</h2>
+      <p>
+        Als O-Wochen-Tutor ist es meine Aufgabe, euch beim Start ins Studium zu unterstützen.
+        Da manche von euch vielleicht nicht bei allen Programmpunkten der O-Woche dabei sein konnten,
+        habe ich die wichtigsten Informationen für euch zusammengefasst – mit hilfreichen Links und
+        kurzen Erklärungen. So habt ihr alles Wichtige auf einen Blick.
+      </p>
+      <p style="margin-top:10px;">
+        Keine Sorge: Die O-Woche ist zwar ein toller Einstieg, aber keine Voraussetzung, um gut ins
+        Studium zu starten. Wenn euch noch etwas unklar ist, könnt ihr euch jederzeit an Tutorinnen
+        und Tutoren, Kommilitoninnen und Kommilitonen oder die Beratungsangebote wenden.
+      </p>
+
+      <div class="hint" style="margin-top:16px;">
+        📋 <strong>Erster Schritt:</strong> Meldet euch bei Moodle an:<br/>
+        <a href="https://lehre.moodle.uni-due.de/course/view.php?id=4995" target="_blank" style="color:#0077cc;">
+          lehre.moodle.uni-due.de → SE-Gruppenliste → Kurs beitreten
+        </a><br/>
+        So werdet ihr zur Gruppenliste hinzugefügt und erhaltet euren Mentoring-Punkt.
+      </div>
+
+      <p class="sig">— Frederik Ernst, O-Wochen-Tutor</p>
+    </div>
+  </section>
+
+  <!-- STUNDENPLAN QUICK INFO -->
+  <div class="info-block" style="background:#eef6ff; border-color:#b3d4f5;">
+    <h3>📅 Stundenplan erstellen – so geht's</h3>
+    <p>
+      Geht auf das <a href="https://campus.uni-due.de/lsf" target="_blank" style="color:var(--accent)">LSF-Portal</a>
+      → „Stundenplan" → „Veranstaltungen" → „Vorlesungsverzeichnis".<br/>
+      Dann: <strong>Informatik → Software Engineering → B.Sc. Software Engineering</strong> → Pflichtbereich wählen.<br/>
+      Orientiert euch am Studienverlaufsplan unten. Denkt daran, auch die zugehörigen <strong>Übungen</strong> einzutragen!
+    </p>
+  </div>
+
+  <!-- STUDIENVERLAUFSPLAN -->
+  <h2 class="section-title" id="verlaufsplan">
+    <span class="icon">📋</span> Studienverlaufsplan
+  </h2>
+  <p style="font-size:0.88rem; color:var(--muted); margin-bottom:14px;">
+    Studienbeginn im Sommersemester · Der Plan ist eine Empfehlung und dient der Orientierung.
+  </p>
+
+  <div class="svp-wrapper">
+    <table class="svp">
+      <thead>
+        <tr>
+          <th>CP</th>
+          <th>Semester</th>
+          <th colspan="3">Module</th>
+          <th>Wahlpflicht / Ergänzung</th>
+          <th>Mathematik</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 1. FS SS -->
+        <tr>
+          <td class="cp-label">27 CP</td>
+          <td class="fs-label">1. FS<br/>(SS)</td>
+          <td class="se">Datenbankmanagement­systeme</td>
+          <td class="pe">Datenstrukturen und Algorithmen</td>
+          <td class="tg">Cybersicherheit</td>
+          <td></td>
+          <td class="ma">Analysis für Informatiker und Wirtschaftsinformatiker</td>
+        </tr>
+        <!-- 2. FS WS -->
+        <tr>
+          <td class="cp-label">33 CP</td>
+          <td class="fs-label">2. FS<br/>(WS)</td>
+          <td class="ti">Modelle der Informatik</td>
+          <td class="pe">Einführung in die Programmierung</td>
+          <td class="tg">Einführung in das Software Engineering</td>
+          <td class="tg">Rechnerstrukturen und Betriebssysteme</td>
+          <td class="ma">Lineare Algebra für Informatiker und Wirtschaftsinformatiker</td>
+        </tr>
+        <!-- 3. FS SS -->
+        <tr>
+          <td class="cp-label">30 CP</td>
+          <td class="fs-label">3. FS<br/>(SS)</td>
+          <td class="se">Software-Architekturen<br/><small>(Wahlkatalog SE)</small></td>
+          <td class="pe">Software Entwicklung und Programmierung (SEP)**<br/><small>E1: Schlüsselqualifikationen integriert</small></td>
+          <td class="tg">Mensch Computer Interaktion</td>
+          <td class="se">Wahlpflichtmodul I<br/><small>(Wirtschaftswiss. &amp; Wirtschaftsinformatik)</small></td>
+          <td class="ma">E1: Schlüssel­qualifikation</td>
+        </tr>
+        <!-- 4. FS WS -->
+        <tr>
+          <td class="cp-label">30 CP</td>
+          <td class="fs-label">4. FS<br/>(WS)</td>
+          <td class="ti">Berechenbarkeit und Komplexität</td>
+          <td class="se">Requirements Engineering<br/><small>(Wahlkatalog SE)</small></td>
+          <td class="tg">Kommunikationsnetze</td>
+          <td class="se">Application Management<br/><small>(Wahlkatalog SE)</small></td>
+          <td class="ma">Stochastik für Informatiker</td>
+        </tr>
+        <!-- 5. FS SS -->
+        <tr>
+          <td class="cp-label">30 CP</td>
+          <td class="fs-label">5. FS<br/>(SS)</td>
+          <td class="se">Qualitätssicherung und Qualitätsmanagement<br/><small>(Wahlkatalog SE)</small></td>
+          <td class="se">Wahlpflichtmodul II<br/><small>(Informatik)</small></td>
+          <td class="se">Wahlpflichtmodul III<br/><small>(Informatik)</small></td>
+          <td class="ba">Seminar<br/><small>Voraussetzung: min. 60 CP im Kernstudium</small></td>
+          <td class="ba">Bachelorprojekt<br/><small>Voraussetzung: min. 90 CP im Kernstudium</small></td>
+        </tr>
+        <!-- 6. FS WS -->
+        <tr>
+          <td class="cp-label">30 CP</td>
+          <td class="fs-label">6. FS<br/>(WS)</td>
+          <td class="ba" colspan="2"><strong>Bachelorarbeit</strong><br/><small>Voraussetzung: 110 CP im Kernstudium</small></td>
+          <td class="pe">Grundlagen des maschinellen Lernens</td>
+          <td class="se">Ausgewählte Aspekte des Software Engineerings<br/><small>(Wahlkatalog SE)</small></td>
+          <td class="ma">E3: Studium Liberale<br/>E3: Studium Liberale</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Legende -->
+  <div class="svp-legend">
+    <div class="svp-legend-item"><div class="svp-legend-dot" style="background:#9dc3e6;border:1px solid #ccc;"></div> Software Engineering*</div>
+    <div class="svp-legend-item"><div class="svp-legend-dot" style="background:#a9d18e;border:1px solid #ccc;"></div> Theoretische Informatik</div>
+    <div class="svp-legend-item"><div class="svp-legend-dot" style="background:#d9d9d9;border:1px solid #ccc;"></div> Mathematik</div>
+    <div class="svp-legend-item"><div class="svp-legend-dot" style="background:#ffd966;border:1px solid #ccc;"></div> Programmierung &amp; Entwicklung</div>
+    <div class="svp-legend-item"><div class="svp-legend-dot" style="background:#c55a11;border:1px solid #ccc;"></div> Technologische Grundlagen</div>
+    <div class="svp-legend-item"><div class="svp-legend-dot" style="background:#595959;border:1px solid #ccc;"></div> Abschlussbereich</div>
+  </div>
+  <p style="font-size:0.8rem; color:var(--muted); margin-top:10px;">
+    * enthält einen Wahlkatalog (Wahlkatalog SE), aus dem fünf Module zu wählen sind.<br/>
+    ** Zulassungsvoraussetzungen: „Einführung in die Programmierung" sowie „Datenstrukturen und Algorithmen" bestanden.
+  </p>
+
+  <!-- STUDIENTECHNIK -->
+  <h2 class="section-title" id="studientechnik">
+    <span class="icon">🧠</span> Studientechnik &amp; Lernstrategie
+  </h2>
+  <div class="tip-list">
+    <ul>
+      <li>Kleine Lern- oder Arbeitsgruppen bilden</li>
+      <li>Das Semester realistisch planen – Vorkenntnisse und Arbeitsaufwand berücksichtigen</li>
+      <li>Zeitpuffer für schwierigere Themen einplanen</li>
+      <li>In Übungen und Tutorien aktiv mitarbeiten, nicht nur zuhören</li>
+      <li>Sprechstunden nutzen, um Fragen zu klären</li>
+      <li>Literatur gezielt (nicht wahllos) auswählen</li>
+      <li>Regelmäßig prüfen, ob man den Stoff wirklich verstanden hat</li>
+      <li>Pausen und Ausgleich fest einplanen</li>
+      <li>Selbstdisziplin entwickeln – an der Uni gibt es deutlich weniger äußere Kontrolle</li>
+    </ul>
+    <div class="hint" style="margin-top:14px;">
+      ⏱ Als grober Richtwert: ca. <strong>40 Stunden pro Woche</strong> für Lehrveranstaltungen und
+      Vor-/Nachbereitung – natürlich mit Pausen und in einem gesunden Rahmen.
+    </div>
+  </div>
+
+  <!-- STIPENDIEN -->
+  <h2 class="section-title" id="stipendien">
+    <span class="icon">🏅</span> Stipendien
+  </h2>
+  <div class="info-block">
+    <h3>Warum lohnt sich ein Blick?</h3>
+    <p>Viele denken vorschnell, sie seien „nicht gut genug". Das stimmt oft nicht! Neben BAföG sind Stipendien eine sehr interessante Alternative oder Ergänzung.</p>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <h3>Viele Träger</h3>
+      <p>Hochschulen, Stiftungen, Unternehmen, Kirchen und politische Begabtenförderwerke bieten Stipendien an.</p>
+    </div>
+    <div class="card">
+      <h3>Mehr als nur Geld</h3>
+      <p>Oft gibt es auch Workshops, Netzwerke und ideelle Förderung – nicht nur finanzielle Unterstützung.</p>
+    </div>
+    <div class="card">
+      <h3>Frühzeitig bewerben</h3>
+      <p>Manche Programme setzen gute Leistungen oder Engagement voraus. Rechtzeitig informieren und bewerben!</p>
+    </div>
+  </div>
+
+  <!-- AUSLAND -->
+  <h2 class="section-title" id="ausland">
+    <span class="icon">✈️</span> Ausland / Auslandsaufenthalte
+  </h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Warum ins Ausland?</h3>
+      <p>Neue Perspektiven, Sprachpraxis und internationale Erfahrung – fachlich und persönlich sehr bereichernd.</p>
+    </div>
+    <div class="card">
+      <h3>Früh planen</h3>
+      <p>Ca. <strong>ein Jahr im Voraus</strong> planen. Über ein Learning Agreement vorher klären, welche Leistungen anerkannt werden.</p>
+    </div>
+    <div class="card">
+      <h3>Förderung</h3>
+      <p>Erasmus+, PROMOS, DUE-Mobil und Auslands-BAföG. Anträge möglichst früh stellen!</p>
+    </div>
+  </div>
+  <div class="hint">
+    🌍 Mehr Infos: <a href="https://www.uni-due.de/international/auslandslotsen" target="_blank" style="color:#5a4500;">Auslandslotsen der UDE</a>
+  </div>
+
+  <!-- BAFOEG -->
+  <h2 class="section-title" id="bafoeg">
+    <span class="icon">💶</span> BAföG &amp; Studienfinanzierung
+  </h2>
+  <div class="tip-list">
+    <ul>
+      <li>Zuständig: Amt für Ausbildungsförderung beim Studierendenwerk Essen-Duisburg</li>
+      <li>Antrag online über <strong>BAföG-Digital</strong> stellen</li>
+      <li>Frühzeitig einreichen – BAföG wird in der Regel <strong>nicht rückwirkend</strong> gezahlt</li>
+      <li>Zwischen Antragstellung und Auszahlung können einige Wochen liegen</li>
+      <li>Nach dem 4. Semester ist ein <strong>Leistungsnachweis</strong> erforderlich</li>
+      <li>Für Auslandsaufenthalte gelten besondere Regelungen (Auslands-BAföG)</li>
+      <li><strong>Folgeanträge rechtzeitig stellen</strong>, damit keine Finanzierungslücken entstehen</li>
+    </ul>
+  </div>
+  <div class="hint" style="margin-top:12px;">
+    ℹ️ Weitere Infos: <a href="https://www.uni-due.de/de/studium/foerderung.php" target="_blank" style="color:#5a4500;">BAföG, Stipendien &amp; Förderung (UDE)</a>
+    · <a href="https://www.stw-edu.de/" target="_blank" style="color:#5a4500;">Studierendenwerk Essen-Duisburg</a>
+  </div>
+
+  <!-- WOHNEN -->
+  <h2 class="section-title" id="wohnen">
+    <span class="icon">🏠</span> Wohnen &amp; Unterkunft
+  </h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Optionen</h3>
+      <p>WG, Wohnheim oder eigene Wohnung. Wohnheime sind oft günstiger und bieten Gemeinschaftseinrichtungen.</p>
+    </div>
+    <div class="card">
+      <h3>Früh bewerben</h3>
+      <p>Wohnheimplätze sind begrenzt – frühzeitige Bewerbung lohnt sich. Auch Aushänge auf dem Campus und WG-Portale nutzen.</p>
+    </div>
+    <div class="card">
+      <h3>Checkliste</h3>
+      <p>Mietvertrag, Nebenkosten, Meldeadresse und Kaution rechtzeitig klären. Gute Verkehrsanbindung spart Zeit.</p>
+    </div>
+  </div>
+  <div class="link-group" style="margin-top:14px;">
+    <ul class="link-list">
+      <li><a href="https://www.stw-edu.de/" target="_blank">Studierendenwerk Essen-Duisburg – Wohnen &amp; Wohnheime</a></li>
+    </ul>
+  </div>
+
+  <!-- SPORT -->
+  <h2 class="section-title" id="sport">
+    <span class="icon">⚽</span> Hochschulsport
+  </h2>
+  <div class="info-block">
+    <h3>Großes Angebot an beiden Standorten</h3>
+    <p>
+      Die UDE bietet über den Universitäts-Sportclub (USC) viele Sportarten an – Fitness, Fußball, Yoga, Zumba und vieles mehr.
+      Viele Angebote sind für Studierende günstig oder kostenlos. Eine tolle Möglichkeit, gesund zu bleiben,
+      Stress abzubauen und neue Leute kennenzulernen!
+    </p>
+  </div>
+  <div class="link-group" style="margin-top:14px;">
+    <ul class="link-list">
+      <li><a href="https://www.buchsys.de/due/angebote/aktueller_zeitraum_1/_USC_-_Universitaets-Sportclub.html" target="_blank">USC – Universitäts-Sportclub (Kursangebote)</a></li>
+      <li><a href="https://www.buchsys.de/due/angebote/aktueller_zeitraum_1/index.html" target="_blank">Alle Hochschulsport-Angebote der UDE</a></li>
+    </ul>
+  </div>
+
+  <!-- LINKS -->
+  <h2 class="section-title" id="links">
+    <span class="icon">🔗</span> Wichtige Links
+  </h2>
+
+  <div class="link-group">
+    <h3>WhatsApp-Gruppen</h3>
+    <ul class="link-list">
+      <li><a href="https://chat.whatsapp.com/FBIrZ5u7tDvI7QNMAatdVd" target="_blank" class="wa">O-Wochen WhatsApp-Gruppe</a></li>
+      <li><a href="https://chat.whatsapp.com/KLI97Da4i2vGLF0vHL5KiS" target="_blank" class="wa">WhatsApp-Gruppe (weitere Gruppe)</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Campus &amp; Lagepläne</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/imperia/md/content/dokumente/lageplaene/lageplan-essen-campus.jpg" target="_blank">Lageplan Campus Essen</a></li>
+      <li><a href="https://www.uni-due.de/imperia/md/content/dokumente/lageplaene/lageplan-essen-schuetzenbahn.jpg" target="_blank">Lageplan Campus Schützenbahn (WiWi)</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Stundenplan &amp; Studium</h3>
+    <ul class="link-list">
+      <li><a href="https://campus.uni-due.de/lsf" target="_blank">LSF – Stundenplan &amp; Vorlesungsverzeichnis</a></li>
+      <li><a href="https://campus.uni-due.de/cm/" target="_blank">HISinOne – Campus-Management-Portal</a></li>
+      <li><a href="https://www.uni-due.de/studienangebote/software_engineering_ba.pdf" target="_blank">Studienverlaufsplan B.Sc. Software Engineering (PDF)</a></li>
+      <li><a href="https://www.uni-due.de/erstsemester/erstsemester_online-tools.php" target="_blank">Online-Tools für Erstsemester</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Moodle &amp; Lernplattform</h3>
+    <ul class="link-list">
+      <li><a href="https://lehre.moodle.uni-due.de/course/view.php?id=4995" target="_blank">Moodle – SE-Gruppenliste (Eintragen!)</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Mentoring &amp; Fachschaft</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/informatik/mentoring/" target="_blank">Mentoring-Programm der Fakultät Informatik</a></li>
+      <li><a href="https://www.uni-due.de/informatik" target="_blank">Hauptseite Fakultät Informatik</a></li>
+      <li><a href="https://fie-due.de/" target="_blank">Fachschaft Informatik Essen (FIE)</a></li>
+      <li><a href="https://www.instagram.com/fie_due/" target="_blank" class="insta">Instagram der Fachschaft Informatik (@fie_due)</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Prüfungen &amp; Verwaltung</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/informatik/pruefungsinformationen" target="_blank">Prüfungsinformationen Fakultät Informatik</a></li>
+      <li><a href="https://www.uni-due.de/verwaltung/pruefungswesen/allginformationen.php" target="_blank">Allgemeine Prüfungsinfos (Anmeldung, Atteste)</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>IT, WLAN &amp; Infrastruktur</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/zim/services/wlan/eduroam-konfiguration.php" target="_blank">WLAN einrichten – eduroam Konfiguration</a></li>
+      <li><a href="https://www.uni-due.de/zim/services/oeffentliche_arbeitsplaetze/pcpools_essen.shtml" target="_blank">PC-Pools &amp; öffentliche Arbeitsplätze Campus Essen</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Ausland &amp; International</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/international/auslandslotsen" target="_blank">Auslandslotsen der UDE</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Finanzierung &amp; Förderung</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/de/studium/foerderung.php" target="_blank">BAföG, Stipendien &amp; Studienfinanzierung (UDE)</a></li>
+      <li><a href="https://www.stw-edu.de/" target="_blank">Studierendenwerk Essen-Duisburg</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Semesterticket &amp; Alltag</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/faq-studium/semesterticket.php" target="_blank">Infos zum Semesterticket</a></li>
+      <li><a href="https://www.uni-due.de/stellenmarkt/" target="_blank">Stellenmarkt der UDE</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Zentrale Anlaufstellen &amp; Beratung</h3>
+    <ul class="link-list">
+      <li><a href="https://www.uni-due.de/de/studium/ombudsstelle" target="_blank">Ombudsstelle für Probleme im Studium</a></li>
+      <li><a href="https://www.uni-due.de/gleichstellung/sexualisierte-gewalt" target="_blank">Hilfe bei sexualisierter Gewalt</a></li>
+      <li><a href="https://www.unidue.de/imperia/md/content/gleichstellungsbeauftragte/flyer_sgd_studierende__2017_.pdf" target="_blank">Informationsflyer für Studierende (PDF)</a></li>
+    </ul>
+  </div>
+
+  <div class="link-group">
+    <h3>Hochschulsport</h3>
+    <ul class="link-list">
+      <li><a href="https://www.buchsys.de/due/angebote/aktueller_zeitraum_1/_USC_-_Universitaets-Sportclub.html" target="_blank">USC – Universitäts-Sportclub</a></li>
+      <li><a href="https://www.buchsys.de/due/angebote/aktueller_zeitraum_1/index.html" target="_blank">Alle Hochschulsport-Angebote</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  Zusammengestellt von deinem O-Wochen-Tutor · Universität Duisburg-Essen · B.Sc. Software Engineering
+</footer>
+
+</body>
+</html>
